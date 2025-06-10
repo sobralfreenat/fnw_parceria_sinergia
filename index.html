@@ -3,34 +3,2321 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FNW - Assessoria Comercial, Técnica e Criativa</title>
+    <title>Parceria FNW & BePlay</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <style>
+        :root {
+                --primary-color: #6c757d;
+            --secondary-color: #adb5bd;
+            --accent-color: #495057;
+            --text-color: #212529;
+            --light-text: #f8f9fa;
+            --background-color: #ffffff;
+            --light-bg: #f1f3f5;
+            --dark-bg: #343a40;
+            --gradient-start: #6c757d;
+            --gradient-end: #adb5bd;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+            --transition: all 0.3s ease;
+            --beplay-color: #495057;
+            --fnw-color: #000000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        button {
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-divider {
+            height: 4px;
+            width: 60px;
+            background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+            margin: 0.5rem auto 0;
+            border-radius: 2px;
+        }
+
+        .content-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .content-container.reversed {
+            flex-direction: row-reverse;
+        }
+
+        .text-content {
+            flex: 1;
+        }
+
+        .image-content {
+            flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: var(--shadow);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+
+        .logo-container .logo:first-child {
+            color: var(--fnw-color);
+        }
+
+        .logo-container .logo:last-child {
+            color: var(--beplay-color);
+        }
+
+        .logo-divider {
+            height: 24px;
+            width: 2px;
+            background-color: #ddd;
+            margin: 0 12px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
             height: 100vh;
-            margin: 0;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(241,243,245,0.9) 100%);
+            position: relative;
+            overflow: hidden;
         }
-        .iframe-container {
-            width: 90%; /* Ajuste a largura conforme necessário */
-            max-width: 1800px; /* Largura máxima do iframe */
-            height: 750px; /* Altura do iframe */
-            border: 1px solid #ccc; /* Borda opcional para o container do iframe */
-            overflow: hidden; /* Garante que nada do iframe saia do container */
-            position: relative; /* Necessário para o posicionamento adequado */
+
+        .hero-content {
+            flex: 1;
+            z-index: 2;
         }
-        .iframe-container iframe {
-            width: 100%; /* Faz o iframe ocupar toda a largura do container */
-            height: 100%; /* Faz o iframe ocupar toda a altura do container */
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            animation: fadeInUp 1s ease;
         }
+
+        .hero-content h2 {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .cta-button {
+            padding: 1rem 2rem;
+            background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(58, 89, 153, 0.3);
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(58, 89, 153, 0.4);
+        }
+
+        .hero-visual {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tech-animation {
+            position: relative;
+            width: 400px;
+            height: 400px;
+        }
+
+        .tech-circle {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid rgba(58, 89, 153, 0.2);
+            animation: pulse 3s infinite alternate;
+        }
+
+        .tech-circle:nth-child(1) {
+            width: 400px;
+            height: 400px;
+            top: 0;
+            left: 0;
+            border-color: rgba(58, 89, 153, 0.2);
+            animation-delay: 0s;
+        }
+
+        .tech-circle:nth-child(2) {
+            width: 300px;
+            height: 300px;
+            top: 50px;
+            left: 50px;
+            border-color: rgba(255, 107, 107, 0.2);
+            animation-delay: 0.5s;
+        }
+
+        .tech-circle:nth-child(3) {
+            width: 200px;
+            height: 200px;
+            top: 100px;
+            left: 100px;
+            border-color: rgba(76, 175, 80, 0.2);
+            animation-delay: 1s;
+        }
+
+        /* Intro Section */
+        .intro {
+            padding: 6rem 5%;
+            background-color: var(--light-bg);
+        }
+
+        .intro-visual {
+            width: 400px;
+            height: 300px;
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            border-radius: var(--border-radius);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .intro-visual::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(transparent, rgba(255,255,255,0.3), transparent 30%);
+            animation: rotate 10s linear infinite;
+        }
+
+        /* Objectives Section */
+        .objectives {
+            padding: 6rem 5%;
+        }
+
+        .objectives-visual {
+            width: 400px;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .target-animation {
+            position: relative;
+            width: 300px;
+            height: 300px;
+        }
+
+        .target-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid;
+            animation: pulse 3s infinite alternate;
+        }
+
+        .target-ring:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: 0;
+            left: 0;
+            border-color: rgba(58, 89, 153, 0.3);
+            animation-delay: 0s;
+        }
+
+        .target-ring:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            top: 50px;
+            left: 50px;
+            border-color: rgba(58, 89, 153, 0.5);
+            animation-delay: 0.3s;
+        }
+
+        .target-ring:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            top: 100px;
+            left: 100px;
+            border-color: rgba(58, 89, 153, 0.7);
+            animation-delay: 0.6s;
+        }
+
+        .target-dot {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            top: 135px;
+            left: 135px;
+            box-shadow: 0 0 15px rgba(58, 89, 153, 0.7);
+            animation: pulse 1.5s infinite alternate;
+        }
+
+        .objective-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            transition: var(--transition);
+        }
+
+        .objective-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .objective-card.beplay {
+            border-left: 4px solid var(--beplay-color);
+        }
+
+        .objective-card.fnw {
+            border-left: 4px solid var(--fnw-color);
+        }
+
+        .objective-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Audience Section */
+        .audience {
+            padding: 6rem 5%;
+            background-color: var(--light-bg);
+        }
+
+        .audience-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .audience-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            width: 200px;
+            transition: var(--transition);
+        }
+
+        .audience-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .audience-card .icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .audience-description {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        /* Value Section */
+        .value {
+            padding: 6rem 5%;
+        }
+
+        .tabs-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .tab {
+            padding: 1rem 2rem;
+            background-color: #f5f5f5;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .tab:first-child {
+            border-radius: 4px 0 0 4px;
+        }
+
+        .tab:last-child {
+            border-radius: 0 4px 4px 0;
+        }
+
+        .tab.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .tab-content {
+            position: relative;
+        }
+
+        .tab-pane {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .tab-pane.active {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            opacity: 1;
+        }
+
+        .value-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            width: 300px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .value-card .icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .value-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Results Section */
+        .results {
+            padding: 6rem 5%;
+            background-color: var(--light-bg);
+        }
+
+        .results-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .results-column {
+            flex: 1;
+            padding: 2rem;
+        }
+
+        .results-column h3 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+
+        .results-column.beplay h3 {
+            color: var(--beplay-color);
+        }
+
+        .results-column.fnw h3 {
+            color: var(--fnw-color);
+        }
+
+        .results-divider {
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, var(--primary-color), transparent);
+        }
+
+        .results-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+        }
+
+        .results-list li .icon {
+            background-color: var(--primary-color);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .results-column.beplay .results-list li .icon {
+            background-color: var(--beplay-color);
+        }
+
+        .results-column.fnw .results-list li .icon {
+            background-color: var(--fnw-color);
+        }
+
+        /* Limitations Section */
+        .limitations {
+            padding: 6rem 5%;
+        }
+
+        .limitations-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .limitation-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            width: 250px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .limitation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .limitation-card .icon {
+            font-size: 2.5rem;
+            color: #777;
+            margin-bottom: 1rem;
+        }
+
+        /* Premise Section */
+        .premise {
+            padding: 4rem 5%;
+            background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+            color: white;
+        }
+
+        .premise-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        blockquote {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            font-style: italic;
+            position: relative;
+        }
+
+        blockquote::before, blockquote::after {
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            font-size: 2rem;
+            position: absolute;
+            opacity: 0.3;
+        }
+
+        blockquote::before {
+            content: "\f10d"; /* quote-left */
+            top: -10px;
+            left: -20px;
+        }
+
+        blockquote::after {
+            content: "\f10e"; /* quote-right */
+            bottom: -10px;
+            right: -20px;
+        }
+
+        /* Next Steps Section */
+        .next-steps {
+            padding: 6rem 5%;
+            background-color: var(--light-bg);
+        }
+
+        .steps-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .step-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            width: 300px;
+            text-align: center;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .cta-container {
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo .logo {
+            color: white;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .footer-column h4 {
+            color: var(--light-text);
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-column h4::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column ul li a {
+            color: #ddd;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icons a {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            from {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+            to {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .content-container {
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .content-container, 
+            .content-container.reversed {
+                flex-direction: column;
+            }
+            
+            .results-container {
+                flex-direction: column;
+                gap: 3rem;
+            }
+            
+            .results-divider {
+                width: 100%;
+                height: 2px;
+                background: linear-gradient(to right, transparent, var(--primary-color), transparent);
+            }
+            
+            .hero {
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                height: auto;
+                padding: 120px 5% 4rem;
+            }
+            
+            .hero-visual {
+                margin-top: 3rem;
+            }
+            
+            .tab-pane.active {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+                flex-direction: column;
+            }
+            
+            .logo-container {
+                margin-bottom: 1rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content h2 {
+                font-size: 1.8rem;
+            }
+            
+            .tech-animation,
+            .intro-visual,
+            .objectives-visual {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .tech-circle:nth-child(1) {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .tech-circle:nth-child(2) {
+                width: 200px;
+                height: 200px;
+                top: 50px;
+                left: 50px;
+            }
+            
+            .tech-circle:nth-child(3) {
+                width: 100px;
+                height: 100px;
+                top: 100px;
+                left: 100px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .tab:first-child, 
+            .tab:last-child {
+                border-radius: 0;
+            }
+            
+            .tab:first-child {
+                border-radius: 4px 4px 0 0;
+            }
+            
+            .tab:last-child {
+                border-radius: 0 0 4px 4px;
+            }
+            
+            blockquote {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1001; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+            padding-top: 60px; /* Location of the box */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto; 
+            padding: 20px;
+            border: 1px solid #888;
+            width: 85%; /* Could be more or less, depending on screen size */
+            max-width: 1000px; /* Maximum width */
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        
+        .modal-content #modalImage {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 20px auto; /* Some margin around the image */
+        }
+
+        .close-button {
+            color: #aaa;
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 35px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Custom ROI Modal Styles */
+        .roi-modal-custom .modal-content.large {
+            max-width: 1100px; /* Wider modal for more content */
+            width: 90%;
+        }
+
+        .modal-tabs {
+            display: flex;
+            flex-wrap: wrap; /* Allow tabs to wrap on smaller screens */
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 20px;
+        }
+
+        .modal-tabs .tab-link {
+            background-color: #f1f1f1;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 10px 15px;
+            transition: 0.3s;
+            font-size: 0.9rem;
+            border-radius: 4px 4px 0 0;
+            margin-right: 5px;
+            margin-bottom: -1px; /* Align with bottom border */
+            border: 1px solid transparent;
+            border-bottom: none;
+        }
+
+        .modal-tabs .tab-link:hover {
+            background-color: #ddd;
+        }
+
+        .modal-tabs .tab-link.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: #ccc;
+            border-bottom: 1px solid var(--primary-color);
+        }
+
+        .roi-tab-content {
+            display: none; /* Hidden by default */
+            padding: 15px 10px;
+            border-top: none;
+            animation: fadeInEffect 0.5s;
+        }
+         .roi-tab-content.active {
+            display: block;
+        }
+
+        .roi-tab-content h4 {
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        .roi-tab-content ul, .roi-tab-content ol {
+            padding-left: 20px;
+            margin-bottom: 1rem;
+        }
+        .roi-tab-content ul li, .roi-tab-content ol li {
+            margin-bottom: 0.5rem;
+        }
+         .roi-tab-content ul ul {
+            margin-top: 0.5rem;
+         }
+
+
+        @keyframes fadeInEffect {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+        
+        .section-padding { /* Utility class for consistent section padding */
+            padding: 6rem 5%;
+        }
+        .roi-section {
+             background-color: var(--light-bg);
+        }
+        .roi-section .lead {
+            font-size: 1.15rem;
+            color: #555;
+            max-width: 800px;
+            margin: 1.5rem auto 0;
+        }
+
+        /* Senha Modal Custom Styles */
+        .senha-modal-custom .modal-content.small {
+            max-width: 450px; /* Smaller modal for password input */
+            width: 90%;
+            text-align: center;
+        }
+        .senha-modal-custom h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .cta-link-in-modal {
+            color: var(--primary-color);
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        .cta-link-in-modal:hover {
+            color: var(--accent-color);
+        }
+
+        /* Styles for ROI Calculator Results Comparison */
+        .comparison-container {
+            display: flex;
+            justify-content: center; /* Changed to center for better visual alignment */
+            flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
+            gap: 20px; /* Space between cards */
+            margin-bottom: 1.5rem;
+            align-items: stretch; /* Ensure all cards stretch to the same height */
+        }
+
+        .scenario-card {
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            flex-basis: calc(33.333% - 13.333px); /* Adjusted for 3 columns with 20px gap */
+            min-width: 280px; /* Minimum width before wrapping */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            /* overflow-y: auto; Removed to control scrolling specifically on .calculator-card */
+        }
+
+        /* New rule for the calculator form card */
+        .calculator-card {
+            text-align: left; /* Input labels should be left-aligned */
+            max-height: 608px; /* Increased by 60% as requested */
+            overflow-y: auto; /* Enable scrolling for the calculator card */
+            padding-right: 15px; /* Re-added to prevent scrollbar overlay */
+        }
+
+        /* Responsive Styles for the 3-column layout */
+        @media (max-width: 1200px) {
+            .scenario-card {
+                flex-basis: calc(50% - 10px); /* 2 columns on medium screens */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .scenario-card {
+                flex-basis: 100%; /* 1 column on small screens */
+            }
+        }
+
+        .scenario-card h6 {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        /* Ensure these h6 borders revert to the default var(--secondary-color) by removing specific overrides */
+        /* .scenario-card.current-scenario h6 {
+            border-bottom-color: #dc3545; 
+        } */
+
+        /* .scenario-card.fnw-scenario h6 {
+            border-bottom-color: #28a745; 
+        } */
+
+        .scenario-card p {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .scenario-card .result-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            display: block;
+            margin-top: 0.5rem;
+        }
+        
+        /* Remove specific colors for result values based on scenario, let them inherit default text color */
+        /* .current-scenario .result-value {
+            color: #dc3545;
+        } */
+
+        /* .fnw-scenario .result-value {
+             color: #28a745;
+        } */
+
+        .savings-summary .savings-value {
+            color: #28a745; /* Green for savings */
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .input-group {
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: .5rem;
+            font-weight: 500;
+        }
+        .input-group input[type="number"] {
+            width: 100%;
+            padding: .75rem;
+            border: 1px solid #ccc;
+            border-radius: var(--border-radius);
+            box-sizing: border-box; /* Ensures padding doesn't affect width */
+        }
+
+        .scenario-card .result-value.sub-value {
+            font-size: 1.2rem; /* Slightly smaller for sub-values like cost per event */
+            color: #555;
+        }
+
+        .transformation-summary p {
+            font-size: 1.1em;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-gain {
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .transformation-summary hr {
+            margin: 1.5rem auto;
+            width: 50%;
+            border-top: 1px dashed #ccc;
+        }
+
+        .transformation-summary p:last-child {
+            margin-top: 1rem;
+        }
+
+        /* Custom ROI Modal Styles */
+        .cases-modal-custom .modal-content.large {
+            max-width: 1400px; /* Further widened modal for better chart visibility */
+            width: 95%;
+        }
+
+        .modal-tabs {
+            display: flex;
+            flex-wrap: wrap; /* Allow tabs to wrap on smaller screens */
+            border-bottom: 1px solid var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .modal-tabs .tab-link {
+            background-color: #f1f1f1;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 10px 15px;
+            transition: 0.3s;
+            font-size: 0.9rem;
+            border-radius: 4px 4px 0 0;
+            margin-right: 5px;
+            margin-bottom: -1px; /* Align with bottom border */
+            border: 1px solid transparent;
+            border-bottom: none;
+        }
+
+        .modal-tabs .tab-link:hover {
+            background-color: #ddd;
+        }
+
+        .modal-tabs .tab-link.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: #ccc;
+            border-bottom: 1px solid var(--primary-color);
+        }
+
+        .case-tab-content {
+            display: none; /* Hidden by default */
+            padding: 15px 10px;
+            border-top: none;
+            animation: fadeInEffect 0.5s;
+        }
+         .case-tab-content.active {
+            display: block;
+        }
+
+        .case-tab-content h4 {
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        .case-tab-content ul, .case-tab-content ol {
+            padding-left: 20px;
+            margin-bottom: 1rem;
+        }
+        .case-tab-content ul li, .case-tab-content ol li {
+            margin-bottom: 0.5rem;
+        }
+         .case-tab-content ul ul {
+            margin-top: 0.5rem;
+         }
+
+        .cases-section {
+             background-color: var(--light-bg);
+        }
+        .cases-section .lead {
+            font-size: 1.15rem;
+            color: #555;
+            max-width: 800px;
+            margin: 1.5rem auto 0;
+        }
+
     </style>
 </head>
 <body>
+    <header>
+        <div class="logo-container">
+            <div class="logo">FNW</div>
+            <div class="logo-divider"></div>
+            <div class="logo">Sinergias</div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#intro">Introdução</a></li>
+                <li><a href="#objectives">Objetivos</a></li>
+                <li><a href="#value">Proposta de Valor</a></li>
+                <li><a href="#results">Resultados</a></li>
+                <li><a href="#next-steps">Próximos Passos</a></li>
+              <!--   <li><a href="#" id="openMapModalBtn">Mapa Mental</a></li> -->
+                <li><a href="#cases">Cases</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<div class="iframe-container">
-    <iframe src="https://gamma.app/embed/dowjlq6ti83w1bp" allow="fullscreen" title="FNW - Assessoria Comercial, Técnica e Criativa"></iframe>
-</div>
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Parceria Estratégica</h1>
+                <h2>FNW - Freenatwork <br>& Seu Negócio</h2>
+                <p class="subtitle">Inovação em Assessoria Consultiva na Geração de Valor e ROI</p>
+                <button class="cta-button">Saiba Mais</button>
+            </div>
+            <div class="hero-visual">
+                <div class="tech-animation">
+                    <div class="tech-circle"></div>
+                    <div class="tech-circle"></div>
+                    <div class="tech-circle"></div>
+                </div>
+            </div>
+        </section>
 
+        <section id="intro" class="intro">
+            <div class="section-header">
+                <h2>Introdução</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="content-container">
+                <div class="text-content">
+                    <p>A <strong>FNW - Freenatwork</strong> é uma empresa especializada em assessoria consultiva de tecnologia e desenvolvimento de negócios, focada em gerar resultados significativos para seus parceiros.</p>
+                    <p>A <strong>Sua Empresa</strong> é uma empresa inovadora que busca soluções de acessibilidade para eventos ao vivo, como peças teatrais e espetáculos musicais.</p>
+                    <p>Esta parceria visa unir a expertise tecnológica da FNW com o conhecimento de mercado da Sua Empresa para criar soluções que revolucionem a acessibilidade em eventos culturais.</p>
+                </div>
+                <div class="image-content">
+                    <div class="intro-visual"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="objectives" class="objectives">
+            <div class="section-header">
+                <h2>Objetivos da Parceria - Longo Prazo</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="content-container reversed">
+                <div class="image-content">
+                    <div class="objectives-visual">
+                        <div class="target-animation">
+                            <div class="target-ring"></div>
+                            <div class="target-ring"></div>
+                            <div class="target-ring"></div>
+                            <div class="target-dot"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-content">
+                    <div class="objective-card" style="border-left-color: var(--beplay-color);">
+                        <h3>Para o Parceiro (Sua Empresa)</h3>
+                        <p>Aumentar a lucratividade através da otimização de custos operacionais e explorar novas fontes de receita com soluções escaláveis e inovadoras.</p>
+                    </div>
+                    <div class="objective-card" style="border-left-color: var(--fnw-color);">
+                        <h3>Para o Cliente (Contratantes)</h3>
+                        <p>Obter maior percepção de valor ao acessar serviços de acessibilidade de alta qualidade com um custo final potencialmente menor, viabilizado pela eficiência da solução.</p>
+                    </div>
+                    <div class="objective-card" style="border-left-color: var(--accent-color);">
+                        <h3>Para o Consumidor Final</h3>
+                        <p>Desfrutar de uma experiência mais suave, integrada e de melhor qualidade, ampliando o acesso e a inclusão.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="audience" class="audience">
+            <div class="section-header">
+                <h2>Público-Alvo</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="audience-container">
+                <div class="audience-card">
+                    <div class="icon"><i class="fas fa-building"></i></div>
+                    <h3>ICP</h3>
+                </div>
+                <div class="audience-card">
+                    <div class="icon"><i class="fas fa-lightbulb"></i></div>
+                    <h3>Produtos e Serviços</h3>
+                </div>
+                <div class="audience-card">
+                    <div class="icon"><i class="fas fa-bullhorn"></i></div>
+                    <h3>Mensagem e Oferta</h3>
+                </div>
+                <div class="audience-card">
+                    <div class="icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Diferencial e ROI</h3>
+                </div>
+            </div>
+            <p class="audience-description">Empresas e organizações que buscam otimizar suas operações, expandir seu alcance de mercado e impulsionar o crescimento através de soluções tecnológicas e Assessoria Consultiva Estratégica.</p>
+        </section>
+
+        <section id="value" class="value">
+            <div class="section-header">
+                <h2>Proposta de Valor</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="tabs-container">
+                <div class="tabs">
+                    <div class="tab active" data-tab="assessment">Assessoria Consultiva</div>
+                    <div class="tab" data-tab="poc">Provas de Conceito</div>
+                    <div class="tab" data-tab="solutions">Soluções  - Exemplo de Aplicação</div>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="assessment">
+                        <div class="value-card">
+                            <div class="icon"><i class="fas fa-brain"></i></div>
+                            <h3>P&D Especializado</h3>
+                            <p>Pesquisa e Desenvolvimento voltados para as necessidades específicas do setor de acessibilidade em eventos culturais.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="icon"><i class="fas fa-chart-line"></i></div>
+                            <h3>Análise de Negócio</h3>
+                            <p>Avaliação detalhada de oportunidades de mercado e estratégias para maximizar o retorno sobre investimento.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="icon"><i class="fas fa-users-cog"></i></div>
+                            <h3>Consultoria Técnica</h3>
+                            <p>Orientação especializada sobre as melhores práticas e tecnologias para implementação de soluções de acessibilidade.</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="poc">
+                        <div class="value-card">
+                            <div class="icon"><i class="fas fa-vial"></i></div>
+                            <h3>Protótipos Funcionais</h3>
+                            <p>Desenvolvimento de modelos de trabalho para validar conceitos antes da implementação em larga escala.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="icon"><i class="fas fa-handshake"></i></div>
+                            <h3>Sessões de Alinhamento</h3>
+                            <p>Reuniões periódicas para garantir que o desenvolvimento esteja alinhado com as expectativas e necessidades do mercado.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="icon"><i class="fas fa-clipboard-check"></i></div>
+                            <h3>Validação de Mercado</h3>
+                            <p>Testes com usuários reais para garantir que as soluções atendam às necessidades do público-alvo.</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="solutions">
+                        <div class="value-card">
+                            <div class="icon"><i class="fas fa-sync-alt"></i></div>
+                            <h3>Sincronização Sistêmica</h3>
+                            <p>Tecnologia para sincronizar audiodescrição com o fluxo do espetáculo em tempo real.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="icon"><i class="fas fa-network-wired"></i></div>
+                            <h3>Gerenciamento Multi Feed</h3>
+                            <p>Sistema para controle remoto de múltiplos canais de acessibilidade simultaneamente.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="icon"><i class="fas fa-desktop"></i></div>
+                            <h3>Painel de Supervisão</h3>
+                            <p>Sala de controle e operação remota geodistribuída para monitoramento e ajustes em tempo real.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="icon"><i class="fas fa-shield-alt"></i></div>
+                            <h3>Autonomia e Controle</h3>
+                            <p>Reduz a dependência de sistemas externos e sinais de terceiros para o acionamento dos Cues de acessibilidade, proporcionando maior controle sobre o fluxo de trabalho, flexibilidade e uma operação mais robusta.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="results" class="results">
+            <div class="section-header">
+                <h2>Resultados Esperados</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="results-container">
+                <div class="results-column beplay">
+                    <h3>Para a Sua Empresa</h3>
+                    <ul class="results-list">
+                        <li><span class="icon"><i class="fas fa-money-bill-wave"></i></span> Redução de custos operacionais</li>
+                        <li><span class="icon"><i class="fas fa-bullseye"></i></span> Apoio de direcionamento comercial</li>
+                        <li><span class="icon"><i class="fas fa-chart-bar"></i></span> Aumento de receita</li>
+                        <li><span class="icon"><i class="fas fa-piggy-bank"></i></span> Aumento de lucratividade</li>
+                        <li><span class="icon"><i class="fas fa-expand-arrows-alt"></i></span> Crescimento com recorrência e escala</li>
+                        <li><span class="icon"><i class="fas fa-plug"></i></span> Independência em interoperabilidade</li>
+                        <li><span class="icon"><i class="fas fa-clone"></i></span> Solução integrada replicável (Label/Whitelabel)</li>
+                    </ul>
+                </div>
+                <div class="results-divider"></div>
+                <div class="results-column fnw">
+                    <h3>Para a FNW</h3>
+                    <ul class="results-list">
+                        <li><span class="icon"><i class="fas fa-sync"></i></span> Receita recorrente</li>
+                        <li><span class="icon"><i class="fas fa-calendar-check"></i></span> Mensalidade que remunera sessões de assessoria</li>
+                        <li><span class="icon"><i class="fas fa-hands-helping"></i></span> Participação nos resultados</li>
+                        <li><span class="icon"><i class="fas fa-chart-line"></i></span> Medição e revisão trimestral progressiva</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="limitations" class="limitations">
+            <div class="section-header">
+                <h2>O que a FNW Não Fornece</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="limitations-container">
+                <div class="limitation-card">
+                    <div class="icon"><i class="fas fa-laptop-code"></i></div>
+                    <p>Custos com aquisição de ferramentas de software/hardware</p>
+                </div>
+                <div class="limitation-card">
+                    <div class="icon"><i class="fas fa-server"></i></div>
+                    <p>Equipamentos, operadores e infraestrutura</p>
+                </div>
+                <div class="limitation-card">
+                    <div class="icon"><i class="fas fa-file-alt"></i></div>
+                    <p>Documentação técnica com informações sobre fluxos de sinais e operativos</p>
+                </div>
+                <div class="limitation-card">
+                    <div class="icon"><i class="fas fa-briefcase"></i></div>
+                    <p>Informações comerciais para nutrir o desenvolvimento do negócio</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="premise" class="premise">
+            <div class="premise-container">
+                <blockquote>
+                    <p>"A parceria entre a FNW - Freenatwork e a Sua Empresa visa gerar ROI significativo, aumentando a eficiência e a acessibilidade em teatros e locais de exibição, por meio de soluções tecnológicas inovadoras e assessoria consultiva especializada, com benefícios mútuos em redução de custos, aumento de receita e lucratividade."</p>
+                </blockquote>
+            </div>
+        </section>
+
+        <section id="next-steps" class="next-steps">
+            <div class="section-header">
+                <h2>Próximos Passos</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Identificar Stakeholders</h3>
+                    <p>Listar os principais contatos e responsáveis pela parceria em ambas as organizações e definir um canal de comunicação.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Acordo Comercial</h3>
+                    <p>Incluir todos os elementos discutidos, como objetivos, público-alvo, proposta de valor e resultados esperados.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Definir Cronograma</h3>
+                    <p>Propor datas para as sessões de alinhamento e estabelecer um cronograma para as provas de conceito (PoC) e outras atividades de P&D.</p>
+                </div>
+            </div>
+            <div class="cta-container">
+                <button class="cta-button">Agendar Reunião Inicial</button>
+            </div>
+        </section>
+
+        <section id="cases" class="cases-section section-padding">
+            <div class="section-header">
+                <h2>Cases de Sucesso e Simuladores</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="container text-center">
+                <p class="lead">Nossa parceria é projetada para gerar um impacto financeiro positivo significativo, otimizar operações e posicionar a Sua Empresa para crescimento sustentável. Explore a análise detalhada de custos, a percepção de valor gerada e as opções de assessoria consultiva.</p>
+                <button class="cta-button" id="openSenhaModalBtn" style="margin-top: 2rem;">Acessar Cases e Simuladores</button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal de Senha -->
+    <div id="senhaModal" class="modal senha-modal-custom">
+        <div class="modal-content small">
+            <span class="close-button senha-close-button">&times;</span>
+            <h4>Acesso Restrito</h4>
+            <p>Por favor, insira a senha para acessar os Cases e Simuladores.</p>
+            <div class="input-group" style="margin-top: 1rem;">
+                <label for="senhaInput" style="display:block; margin-bottom:0.5rem;">Senha:</label>
+                <input type="password" id="senhaInput" style="width: 100%; padding: 0.5rem; border-radius: var(--border-radius); border: 1px solid #ccc;">
+            </div>
+            <button class="cta-button" id="submitSenhaBtn" style="margin-top: 1.5rem; padding: 0.8rem 1.5rem; width:100%;">Acessar</button>
+            <p id="senhaErrorMsg" style="color: red; margin-top: 1rem; font-size: 0.9em; display: none;">Senha incorreta. Tente novamente.</p>
+        </div>
+    </div>
+
+    <!-- Modal para Mapa Mental (existente) -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <img src="https://d1yei2z3i6k35z.cloudfront.net/3119789/683e78774acc7_MapaMentalprevia_redux.png" alt="Mapa Mental do Projeto" id="modalImage">
+        </div>
+    </div>
+
+    <!-- Modal para ROI -->
+    <div id="casesModal" class="modal cases-modal-custom">
+        <div class="modal-content large">
+            <span class="close-button cases-close-button">&times;</span>
+            <h3>Cases de Sucesso e Propostas de Assessoria</h3>
+            
+            <div class="modal-tabs">
+                <button class="tab-link active" onclick="openCaseTab(event, 'CaseImpactoFinanceiro')">Impacto Financeiro</button>
+                <!--
+                <button class="tab-link" onclick="openCaseTab(event, 'CasePercepcaoValor')">Percepção de Valor</button>
+                <button class="tab-link" onclick="openCaseTab(event, 'CaseAssessoriaOp1')">Assessoria Op.1</button>
+                <button class="tab-link" onclick="openCaseTab(event, 'CaseAssessoriaOp2')">Assessoria Op.2</button>
+                <button class="tab-link" onclick="openCaseTab(event, 'CaseAssessoriaOp3')">Assessoria Op.3</button>
+                <button class="tab-link" onclick="openCaseTab(event, 'CasePrecificacaoNotas')">Notas: Precificação</button>
+                -->
+            </div>
+
+            <div id="CaseImpactoFinanceiro" class="tab-content case-tab-content active">
+                <h4>Simulador de Produtividade: Otimize o Trabalho do Seu Operador</h4>
+                <p>Veja como <strong>UM ÚNICO OPERADOR</strong> pode multiplicar sua capacidade de gerenciamento de eventos com a solução FNW & Sua Empresa, mantendo o mesmo custo mensal.</p>
+                
+                <div class="comparison-container">
+                    <div class="scenario-card calculator-card">
+                        <h6>Calculadora de Produtividade</h6>
+                        <div class="input-group">
+                            <label for="eventosAtuaisOperador">Capacidade ATUAL de 1 operador: Eventos/semana</label>
+                            <input type="number" id="eventosAtuaisOperador" value="6">
+                        </div>
+                        <div class="input-group">
+                            <label for="semanasPorMesInput">Semanas consideradas no mês:</label>
+                            <input type="number" id="semanasPorMesInput" value="4.5" step="0.1">
+                            <small>Padrão: 4.5 semanas/mês. Ajuste se necessário.</small>
+                        </div>
+                        <div class="input-group">
+                            <label for="custoMensalOperador">Custo Mensal TOTAL de 1 operador: R$</label>
+                            <input type="number" id="custoMensalOperador" value="4860">
+                        </div>
+                        <div class="input-group">
+                            <label for="ticketMedioInput">Preço de Venda (Ticket Médio) por Evento: R$</label>
+                            <input type="number" id="ticketMedioInput" value="635">
+                        </div>
+                        <div class="input-group">
+                            <label for="numeroRecepcionistasInput">Número de recepcionistas por evento:</label>
+                            <input type="number" id="numeroRecepcionistasInput" value="2">
+                        </div>
+                        <div class="input-group">
+                            <label for="custoPorEventoRecepcionistaInput">Custo por evento de 1 Recepcionista: R$</label>
+                            <input type="number" id="custoPorEventoRecepcionistaInput" value="100">
+                        </div>
+                        <div class="input-group">
+                            <label for="comissaoVendasInput">Comissão de Vendas (%):</label>
+                            <input type="number" id="comissaoVendasInput" value="15">
+                            <small>Ex: Digite 10 para 10%</small>
+                        </div>
+                        <div class="input-group">
+                            <label for="numeroTotalOperadoresInput">Número Total de Operadores Desempenhando:</label>
+                            <input type="number" id="numeroTotalOperadoresInput" value="1" min="1">
+                        </div>
+                        <div class="input-group">
+                            <label for="fatorSimultaneidadeFNW">Eventos simultâneos que 1 operador poderá gerenciar com Solução FNW:</label>
+                            <input type="number" id="fatorSimultaneidadeFNW" value="8">
+                            <small>Ajuste este fator para simular diferentes níveis de otimização (Ex: 2, 3, 4...).</small>
+                        </div>
+                    </div>
+
+                    <div class="scenario-card current-scenario">
+                        <h6>ATUAL: 1 Operador 1 Evento</h6>
+                        <p>Preço Médio de Venda (Ticket Médio):<br>
+                            <span class="result-value" id="outTicketMedioDisplayAtual">R$ 0,00</span>
+                        </p>
+                        <p>Capacidade (staff + app): <strong id="outEventosAtuaisOperador">0</strong></p>
+                        <p>Custo Staff por Evento (Atual):<br>
+                            <span class="result-value sub-value" id="outCustoPessoalPorEventoAtual">R$ 0,00</span>
+                        </p>
+                        <p style="margin-top:10px;">Lucro Líquido por Evento (Atual):<br>
+                            <span class="result-value sub-value" id="outLucroLiquidoPorEventoAtual">R$ 0,00</span>
+                            <small style="display:block; font-size:0.8em;">(Preço Venda - Custos Totais por Evento)</small>
+                            <small style="display:block; font-size:0.75em; color:#555;">(Custos Totais = Custo Staff + Comissão Vendas)</small>
+                        </p>
+                        <p style="margin-top:10px;">Margem Líquida por Evento (Atual):<br>
+                            <span class="result-value sub-value" id="outMargemLiquidaAtual" style="font-weight:bold;">0%</span>
+                        </p>
+                    </div>
+                    <div class="scenario-card fnw-scenario">
+                        <h6>FNW <span id="outFatorSimultaneidadeDisplay"></span> Eventos</h6>
+                        <p>Preço Médio de Venda (Ticket Médio):<br>
+                            <span class="result-value" id="outTicketMedioDisplayFNW">R$ 0,00</span>
+                        </p>
+                        <p>Capacidade (staff + app): <strong id="outEventosFNWOperador">0</strong></p>
+                        <p>Custo Staff por Evento (FNW):<br>
+                            <span class="result-value sub-value" id="outCustoPessoalPorEventoFNW">R$ 0,00</span>
+                        </p>
+                        <p style="margin-top:10px;">Lucro Líquido por Evento (FNW):<br>
+                            <span class="result-value sub-value" id="outLucroLiquidoPorEventoFNW">R$ 0,00</span>
+                            <small style="display:block; font-size:0.8em;">(Preço Venda - Custos Totais por Evento)</small>
+                            <small style="display:block; font-size:0.75em; color:#555;">(Custos Totais Otimizados = Custo Staff Otimizado + Comissão Vendas)</small>
+                        </p>
+                        <p style="margin-top:10px;">Margem Líquida por Evento (FNW):<br>
+                            <span class="result-value sub-value" id="outNovaMargemLiquidaFNW" style="font-weight:bold;">0%</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="roi-results" style="margin-top: 2rem; padding-top:1.5rem; border-top: 1px solid #eee;">
+                    <div class="transformation-summary" style="margin-top: 2.5rem; padding-top: 2rem; border-top: 2px solid var(--primary-color); text-align:center;">
+                        <h6 style="font-size: 1.3em; margin-bottom:1.5rem;">Resultado da Transformação: O Que Isso Significa?</h6>
+                        <p style="font-size: 1.15em; margin-bottom: 1rem;">Sua equipe com <strong id="outTotalOperadoresSummary" style="font-weight:bold;">1</strong> operador(es) ANTES entregava <strong id="outComparativoAntes" style="font-weight:bold;">0</strong> eventos/mês, AGORA com a solução FNW entrega <strong id="outComparativoDepois" style="font-weight:bold;">0</strong> eventos/mês!</p>
+                        <p>Multiplicação da Capacidade Mensal (por operador): <strong id="outMultiplicacaoCapacidade" style="font-weight:bold;">0x</strong></p>
+                        <p>Ganho de Capacidade Mensal (por operador): <strong id="outAumentoEventosOperador" style="font-weight:bold;">+0 eventos</strong></p>
+                        <hr style="margin: 1rem auto; width: 70%; border-top: 1px solid #eee;">
+                        <p>Redução no Custo Total por Evento: <strong id="outReducaoCustoPessoalPorEvento" style="font-weight:bold;">R$ 0,00</strong></p>
+                        <hr style="margin: 1rem auto; width: 70%; border-top: 1px solid #eee;">
+                        <p>Preço de Venda por Evento (Ticket Médio Informado): <strong id="outTicketMedioInformado" style="font-weight:bold;">R$ 0,00</strong></p>
+                        <hr style="margin: 1rem auto; width: 70%; border-top: 1px solid #eee;">
+                        <p>Estimativa de Lucro Líquido Mensal Total (Antes): <strong id="outLucroBrutoMensalTotalAntes">R$ 0,00</strong></p>
+                        <p>Estimativa de Lucro Líquido Mensal Total (Depois): <strong id="outLucroBrutoMensalTotalDepois" class="highlight-gain-no-color" style="font-weight:bold;">R$ 0,00</strong></p>
+                        <p style="margin-top:0.5rem;">Aumento no Lucro Líquido Mensal Estimado: <strong id="outAumentoLucroBrutoMensal" class="highlight-gain-no-color" style="font-weight:bold;">R$ 0,00</strong></p>
+                        <hr style="margin: 1.5rem auto; width: 50%; border-top: 1px dashed #ccc;">
+                        <p style="font-size: 1.1em;"><strong>Impacto Potencial:</strong> Aumento significativo da capacidade operacional, redução de custos por evento e multiplicação do lucro líquido mensal, mantendo uma estrutura de precificação consistente.</p>
+                    </div>
+                    <p style="font-size:0.9em; margin-top:1.5rem; color:#555; text-align:center;"><em>Simulação focada na produtividade de um único operador.</em></p>
+                </div>
+
+                <div id="produtividadeChart" style="width:100%; height:400px; margin-top: 3rem;"></div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="logo">FNW</div>
+                <div class="logo-divider"></div>
+                <div class="logo">Sua Empresa</div>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><a href="mailto:novosnegocios@geriah.com">novosnegocios@geriah.com</a></li>
+                        <li><a href="tel:+5511911595028">+55 11 1159-5028</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="#intro">Introdução</a></li>
+                        <li><a href="#objectives">Objetivos</a></li>
+                        <li><a href="#value">Proposta de Valor</a></li>
+                        <li><a href="#results">Resultados</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Siga-nos</h4>
+                    <div class="social-icons">
+                        <a href="https://www.linkedin.com/posts/demarcoalexsobral_geriah-conectando-gera%C3%A7%C3%B5es-com-intelig%C3%AAncia-activity-7336026019876720640-rW3_?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAGx6h8BBeBgOhIuApp4HvPb6DdK4e8e3_0"><i class="fab fa-linkedin"></i></a>
+                       <!--  <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 FNW & Sua Empresa. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        const headerHeight = document.querySelector('header').offsetHeight;
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Header shadow on scroll
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.1)';
+                    header.style.padding = '0.7rem 5%';
+                } else {
+                    header.style.boxShadow = 'none';
+                    header.style.padding = '1rem 5%';
+                }
+            });
+            
+            // Tab functionality for Value Proposition section
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    tabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Get tab content id
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Hide all tab panes
+                    document.querySelectorAll('.tab-pane').forEach(pane => {
+                        pane.classList.remove('active');
+                    });
+                    
+                    // Show selected tab pane
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // CTA Button animation
+            const ctaButtons = document.querySelectorAll('.cta-button');
+            ctaButtons.forEach(button => {
+                button.addEventListener('mouseover', function() {
+                    this.style.transform = 'translateY(-3px)';
+                    this.style.boxShadow = '0 8px 20px rgba(58, 89, 153, 0.4)';
+                });
+                
+                button.addEventListener('mouseout', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 4px 15px rgba(58, 89, 153, 0.3)';
+                });
+                
+                button.addEventListener('click', function() {
+                    const buttonText = this.textContent.trim();
+                    if (buttonText === 'Saiba Mais') {
+                        document.getElementById('intro').scrollIntoView({ 
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    } else if (buttonText === 'Agendar Reunião Inicial') {
+                        alert('Obrigado pelo interesse! Em breve entraremos em contato para agendar uma reunião inicial.');
+                    }
+                    // Other cta-buttons with specific IDs (like openSenhaModalBtn) 
+                    // will be handled by their own dedicated event listeners 
+                    // and will not trigger any alert from this generic handler.
+                });
+            });
+            
+            // Animation on scroll
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.objective-card, .audience-card, .value-card, .limitation-card, .step-card');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.3;
+                    
+                    if (elementPosition < screenPosition) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+            
+            // Set initial state for scroll animation
+            const elementsToAnimate = document.querySelectorAll('.objective-card, .audience-card, .value-card, .limitation-card, .step-card');
+            elementsToAnimate.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            });
+            
+            // Run animation on scroll
+            window.addEventListener('scroll', animateOnScroll);
+            
+            // Run initial animation
+            animateOnScroll();
+
+            // Modal JavaScript
+            const imageModal = document.getElementById('imageModal');
+            const openModalBtn = document.getElementById('openMapModalBtn');
+            const closeModalSpan = document.querySelector('#imageModal .close-button');
+
+            if (openModalBtn) {
+                openModalBtn.onclick = function(e) {
+                    e.preventDefault(); // Prevent default anchor behavior
+                    if (imageModal) imageModal.style.display = "block";
+                }
+            }
+
+            if (closeModalSpan) {
+                closeModalSpan.onclick = function() {
+                    if (imageModal) imageModal.style.display = "none";
+                }
+            }
+
+            // When the user clicks anywhere outside of the modal content, close it
+            window.onclick = function(event) {
+                if (event.target == imageModal) { // Apenas o imageModal fecha com clique fora
+                    if (imageModal) imageModal.style.display = "none";
+                }
+                // Removido o fechamento automático para casesModal e senhaModal ao clicar fora
+                /*
+                if (event.target == casesModal) {
+                    if (casesModal) casesModal.style.display = "none";
+                }
+                if (event.target == senhaModal) {
+                    if (senhaModal) {
+                        senhaModal.style.display = "none";
+                        document.getElementById('senhaErrorMsg').style.display = 'none'; // Hide error on close
+                        document.getElementById('senhaInput').value = ''; // Clear senha input
+                    }
+                }
+                */
+            }
+
+            // ROI Modal specific JS
+            const casesModal = document.getElementById('casesModal');
+            const closeCasesBtn = casesModal ? casesModal.querySelector('.cases-close-button') : null;
+
+            // Senha Modal JS
+            const senhaModal = document.getElementById('senhaModal');
+            const openSenhaBtn = document.getElementById('openSenhaModalBtn');
+            const submitSenhaBtn = document.getElementById('submitSenhaBtn');
+            const senhaInput = document.getElementById('senhaInput');
+            const senhaErrorMsg = document.getElementById('senhaErrorMsg');
+            // const correctSenha = "FNWBEPLAY"; // Definindo a senha - Old
+            const caseAccessConfig = {
+                "FNWBEPLAY": {
+                    modalTitle: "Case FNW & Sua Empresa: Impacto Financeiro e Assessoria",
+                },
+                "FNWGERIAH": {
+                    modalTitle: "Case FNW & GERIAH: Análise de Viabilidade e Assessoria",
+                }
+            };
+            let currentCaseKey = null;
+            const closeSenhaModalBtn = senhaModal ? senhaModal.querySelector('.senha-close-button') : null;
+
+
+            if (openSenhaBtn) {
+                openSenhaBtn.onclick = function(e) {
+                    e.preventDefault();
+                    if (senhaModal) senhaModal.style.display = "block";
+                    if (senhaInput) senhaInput.focus(); 
+                }
+            }
+            
+            if (closeSenhaModalBtn) {
+                closeSenhaModalBtn.onclick = function() {
+                    if (senhaModal) {
+                        senhaModal.style.display = "none";
+                        if(senhaErrorMsg) senhaErrorMsg.style.display = 'none'; 
+                        if(senhaInput) senhaInput.value = ''; 
+                    }
+                }
+            }
+
+            if (submitSenhaBtn) {
+                submitSenhaBtn.onclick = function() {
+                    const enteredPassword = senhaInput.value.toUpperCase();
+                    if (caseAccessConfig[enteredPassword]) {
+                        currentCaseKey = enteredPassword;
+                        const config = caseAccessConfig[currentCaseKey];
+
+                        if (senhaModal) {
+                            senhaModal.style.display = "none";
+                            if(senhaErrorMsg) senhaErrorMsg.style.display = 'none';
+                            if(senhaInput) senhaInput.value = ''; 
+                        }
+                        if (casesModal) {
+                            casesModal.style.display = "block";
+                            const modalTitleElement = casesModal.querySelector('h3');
+                            if (modalTitleElement) {
+                                modalTitleElement.textContent = config.modalTitle;
+                            }
+                            
+                            const firstTabLink = casesModal.querySelector('.modal-tabs .tab-link');
+                            if (firstTabLink) {
+                                firstTabLink.click(); // Open the first tab by default
+                            }
+                             // Ensure calculator updates if first tab is ROI impact
+                            const impactoFinanceiroTab = document.getElementById('CaseImpactoFinanceiro');
+                            if (impactoFinanceiroTab && impactoFinanceiroTab.classList.contains('active')){
+                                calcularProdutividadeOperador();
+                            }
+                        }
+                    } else {
+                        if (senhaErrorMsg) senhaErrorMsg.style.display = "block";
+                        if (senhaInput) senhaInput.value = '';
+                        if (senhaInput) senhaInput.focus();
+                    }
+                }
+            }
+
+            if (senhaInput) {
+                // Auto-submit when a complete valid password is typed
+                senhaInput.addEventListener('input', function() {
+                    const enteredPassword = senhaInput.value.toUpperCase();
+                    // Check if the currently typed text is a complete and valid password key
+                    if (caseAccessConfig[enteredPassword]) {
+                        if(submitSenhaBtn) {
+                            submitSenhaBtn.click(); // Trigger the existing submit logic
+                        }
+                    }
+                });
+
+                // Keep Enter key for accessibility and as a fallback
+                senhaInput.addEventListener('keypress', function(event) {
+                    if (event.key === "Enter") {
+                        event.preventDefault();
+                        if(submitSenhaBtn) {
+                            submitSenhaBtn.click();
+                        }
+                    }
+                });
+            }
+
+            // Original ROI Modal open/close (now opened by senha modal success)
+            // if (openRoiBtn) { ... } // This is now handled by openSenhaBtn and submitSenhaBtn
+
+            if (closeCasesBtn) {
+                closeCasesBtn.onclick = function() {
+                    if (casesModal) casesModal.style.display = "none";
+                }
+            }
+
+            // Tab functionality for ROI Modal
+            // Default open tab
+            if (document.getElementById("CaseImpactoFinanceiro")) {
+                 document.getElementById("CaseImpactoFinanceiro").style.display = "block";
+                 // Call calculate on load if default values are present
+                 // setTimeout(calcularRoiSimulado, 100); // Ensure elements are ready
+            }
+
+            const calcularProdutividadeButton = document.getElementById('calcularProdutividadeBtn');
+            if (calcularProdutividadeButton) {
+                // calcularProdutividadeButton.addEventListener('click', calcularProdutividadeOperador);
+            }
+            // Trigger initial calculation with default values when modal is opened or tab is shown
+            // This can be refined to trigger when the tab becomes active if not initially active.
+            // if (document.getElementById('eventosAtuaisOperador')) { 
+            //      calcularProdutividadeOperador(); 
+            // }
+           
+            // Get input elements for real-time calculation
+            const eventosAtuaisInput = document.getElementById('eventosAtuaisOperador');
+            const semanasPorMesInput = document.getElementById('semanasPorMesInput');
+            const custoMensalInput = document.getElementById('custoMensalOperador');
+            const numeroRecepcionistasInput = document.getElementById('numeroRecepcionistasInput');
+            const custoPorEventoRecepcionistaInput = document.getElementById('custoPorEventoRecepcionistaInput');
+            const fatorSimultaneidadeInput = document.getElementById('fatorSimultaneidadeFNW');
+            const ticketMedioInput = document.getElementById('ticketMedioInput'); 
+            const comissaoVendasInput = document.getElementById('comissaoVendasInput'); 
+            const numeroTotalOperadoresInput = document.getElementById('numeroTotalOperadoresInput'); // Added
+
+            // Add event listeners to update calculation resultados_produtividade_operador real-time
+            [eventosAtuaisInput, semanasPorMesInput, custoMensalInput, ticketMedioInput, numeroRecepcionistasInput, custoPorEventoRecepcionistaInput, fatorSimultaneidadeInput, comissaoVendasInput, numeroTotalOperadoresInput].forEach(input => {
+                if (input) {
+                    input.addEventListener('input', calcularProdutividadeOperador);
+                }
+            });
+
+        });
+
+        function openCaseTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("case-tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tab-link");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+
+            // If the Impacto Financeiro tab is opened, and it has the calculator, recalculate
+            if (tabName === 'CaseImpactoFinanceiro') {
+                calcularProdutividadeOperador();
+            }
+        }
+
+        function calcularProdutividadeOperador() {
+            const eventosAtuaisOperadorSemanal = parseFloat(document.getElementById('eventosAtuaisOperador').value) || 0;
+            const custoMensalOperador = parseFloat(document.getElementById('custoMensalOperador').value) || 0;
+            const numeroRecepcionistas = parseFloat(document.getElementById('numeroRecepcionistasInput').value) || 0;
+            const custoPorEventoRecepcionista = parseFloat(document.getElementById('custoPorEventoRecepcionistaInput').value) || 0;
+            const fatorSimultaneidadeFNW = parseFloat(document.getElementById('fatorSimultaneidadeFNW').value) || 1;
+            const semanasPorMes = parseFloat(document.getElementById('semanasPorMesInput').value) || 4.5;
+            const ticketMedio = parseFloat(document.getElementById('ticketMedioInput').value) || 0;
+            const comissaoVendasPercent = parseFloat(document.getElementById('comissaoVendasInput').value) / 100 || 0;
+            const numeroTotalOperadores = parseInt(document.getElementById('numeroTotalOperadoresInput').value) || 1;
+
+            // Calcular eventos mensais com base nos eventos semanais (POR OPERADOR)
+            const eventosMensaisAtuais_perOp = Math.round(eventosAtuaisOperadorSemanal * semanasPorMes);
+
+            // --- Cenário Atual (POR OPERADOR para custos unitários, depois escalado para totais) ---
+            const custoOperadorPorEventoAtual = eventosMensaisAtuais_perOp > 0 ? (custoMensalOperador / eventosMensaisAtuais_perOp) : 0;
+            const custoPessoalTotalPorEventoAtual = custoOperadorPorEventoAtual + (numeroRecepcionistas * custoPorEventoRecepcionista);
+            const comissaoVendasValorAtual = ticketMedio * comissaoVendasPercent;
+            const custoTotalPorEventoAtual = custoPessoalTotalPorEventoAtual + comissaoVendasValorAtual;
+            
+            const precoServicoAtual = ticketMedio;
+            const lucroLiquidoPorEventoAtual = precoServicoAtual - custoTotalPorEventoAtual;
+            // Lucro Mensal Total (ANTES) para TODOS operadores
+            const lucroMensalTotalAtual_todosOperadores = lucroLiquidoPorEventoAtual * eventosMensaisAtuais_perOp * numeroTotalOperadores;
+            const margemLiquidaAtual_percentual = precoServicoAtual > 0 ? (lucroLiquidoPorEventoAtual / precoServicoAtual) * 100 : 0;
+
+            // Capacidade total (TODOS operadores)
+            const eventosMensaisAtuais_todosOperadores = eventosMensaisAtuais_perOp * numeroTotalOperadores;
+
+            document.getElementById('outTicketMedioDisplayAtual').textContent = "R$ " + ticketMedio.toFixed(2).replace('.', ',');
+            document.getElementById('outEventosAtuaisOperador').textContent = eventosMensaisAtuais_todosOperadores; // Total capacity
+            document.getElementById('outCustoPessoalPorEventoAtual').textContent = "R$ " + custoPessoalTotalPorEventoAtual.toFixed(2).replace('.', ',');
+            document.getElementById('outLucroLiquidoPorEventoAtual').textContent = "R$ " + Math.max(0, lucroLiquidoPorEventoAtual).toFixed(2).replace('.', ',');
+            document.getElementById('outLucroBrutoMensalTotalAntes').textContent = "R$ " + Math.max(0, lucroMensalTotalAtual_todosOperadores).toFixed(2).replace('.', ',');
+            document.getElementById('outMargemLiquidaAtual').textContent = Math.max(0, margemLiquidaAtual_percentual).toFixed(1).replace('.', ',') + "%";
+
+            // --- Cenário com Solução FNW (POR OPERADOR para custos unitários, depois escalado para totais) ---
+            const eventosFNWOperadorMensal_perOp = Math.round(eventosMensaisAtuais_perOp * fatorSimultaneidadeFNW);
+            const custoOperadorPorEventoFNW = eventosFNWOperadorMensal_perOp > 0 ? (custoMensalOperador / eventosFNWOperadorMensal_perOp) : 0;
+            const custoPessoalTotalPorEventoFNW = custoOperadorPorEventoFNW + (numeroRecepcionistas * custoPorEventoRecepcionista);
+            const comissaoVendasValorFNW = ticketMedio * comissaoVendasPercent;
+            const custoTotalPorEventoFNW = custoPessoalTotalPorEventoFNW + comissaoVendasValorFNW;
+
+            const precoServicoFNW_mantido = ticketMedio;
+            const lucroLiquidoPorEventoFNW = precoServicoFNW_mantido - custoTotalPorEventoFNW;
+            // Lucro Mensal Total (DEPOIS) para TODOS operadores
+            const lucroMensalTotalFNW_todosOperadores = lucroLiquidoPorEventoFNW * eventosFNWOperadorMensal_perOp * numeroTotalOperadores;
+            const novaMargemLiquidaFNW_percentual = precoServicoFNW_mantido > 0 ? (lucroLiquidoPorEventoFNW / precoServicoFNW_mantido) * 100 : 0;
+
+            // Capacidade total FNW (TODOS operadores)
+            const eventosFNWOperadorMensal_todosOperadores = eventosFNWOperadorMensal_perOp * numeroTotalOperadores;
+            
+            document.getElementById('outTicketMedioDisplayFNW').textContent = "R$ " + ticketMedio.toFixed(2).replace('.', ',');
+            document.getElementById('outFatorSimultaneidadeDisplay').textContent = fatorSimultaneidadeFNW.toFixed(0);
+            document.getElementById('outEventosFNWOperador').textContent = eventosFNWOperadorMensal_todosOperadores; // Total capacity
+            document.getElementById('outCustoPessoalPorEventoFNW').textContent = "R$ " + custoPessoalTotalPorEventoFNW.toFixed(2).replace('.', ',');
+            document.getElementById('outLucroLiquidoPorEventoFNW').textContent = "R$ " + Math.max(0, lucroLiquidoPorEventoFNW).toFixed(2).replace('.', ',');
+            document.getElementById('outNovaMargemLiquidaFNW').textContent = Math.max(0, novaMargemLiquidaFNW_percentual).toFixed(1).replace('.', ',') + "%";
+
+            // --- Transformação na Produtividade (Summary) ---
+            // Ganho de capacidade POR OPERADOR
+            const aumentoEventosOperador_perOp = eventosFNWOperadorMensal_perOp - eventosMensaisAtuais_perOp;
+            const reducaoCustoPessoalPorEvento = custoTotalPorEventoAtual - custoTotalPorEventoFNW; // Corrected: Use Custo TOTAL por evento
+            // Aumento Lucro Mensal TOTAL (todos operadores)
+            const aumentoLucroMensal_todosOperadores = lucroMensalTotalFNW_todosOperadores - lucroMensalTotalAtual_todosOperadores;
+
+            document.getElementById('outTotalOperadoresSummary').textContent = numeroTotalOperadores;
+            document.getElementById('outComparativoAntes').textContent = eventosMensaisAtuais_todosOperadores;
+            document.getElementById('outComparativoDepois').textContent = eventosFNWOperadorMensal_todosOperadores;
+            document.getElementById('outMultiplicacaoCapacidade').textContent = fatorSimultaneidadeFNW.toFixed(1).replace('.', ',') + "x";
+            document.getElementById('outAumentoEventosOperador').textContent = (aumentoEventosOperador_perOp >= 0 ? "+" : "") + aumentoEventosOperador_perOp + " eventos/mês";
+            
+            document.getElementById('outTicketMedioInformado').textContent = "R$ " + ticketMedio.toFixed(2).replace('.', ',');
+            document.getElementById('outLucroBrutoMensalTotalAntes').textContent = "R$ " + Math.max(0, lucroMensalTotalAtual_todosOperadores).toFixed(2).replace('.', ',');
+            document.getElementById('outLucroBrutoMensalTotalDepois').textContent = "R$ " + Math.max(0, lucroMensalTotalFNW_todosOperadores).toFixed(2).replace('.', ',');
+            document.getElementById('outAumentoLucroBrutoMensal').textContent = "R$ " + Math.max(0, aumentoLucroMensal_todosOperadores).toFixed(2).replace('.', ',');
+
+            document.getElementById('outReducaoCustoPessoalPorEvento').textContent = "R$ " + reducaoCustoPessoalPorEvento.toFixed(2).replace('.', ',') + " por evento";
+
+            // Plotly Chart Generation
+            const maxFatorSimultaneidade = 25; // Increased range to observe curve flattening or decline
+            let xValues = [];
+            let yValues = [];
+            let marginPercentageValues = []; // New array for margin percentages
+            let totalCostValues = []; // New array for total monthly costs
+
+            // Initialize all scenario/margin traces with their full configuration
+            const currentScenarioTrace = { x: [], y: [], mode: 'markers', name: 'Cenário Atual', marker: { color: 'red', size: 10 }, hovertemplate: 'Eventos: %{x}<br>Lucro: R$ %{y:,.2f}<extra>Cenário Atual</extra>', hoverinfo: 'text' };
+            const fnwScenarioTrace = { x: [], y: [], mode: 'markers', name: 'Cenário FNW Atual', marker: { color: 'green', size: 10 }, hovertemplate: 'Eventos: %{x}<br>Lucro: R$ %{y:,.2f}<extra>Cenário FNW Atual</extra>', hoverinfo: 'text' };
+            let currentMarginTrace = { x: [], y: [], mode: 'markers', name: 'Margem Atual', marker: { color: 'orange', size: 10 }, hovertemplate: 'Eventos: %{x}<br>Margem: %{y}<extra>Margem Atual</extra>', hoverinfo: 'text' };
+            let fnwMarginTrace = { x: [], y: [], mode: 'markers', name: 'Margem FNW Atual', marker: { color: 'purple', size: 10 }, hovertemplate: 'Eventos: %{x}<br>Margem: %{y}<extra>Margem FNW Atual</extra>', hoverinfo: 'text' };
+
+            for (let i = 1; i <= maxFatorSimultaneidade; i++) {
+                const simulatedEventosFNWOperadorMensal_perOp = Math.round(eventosMensaisAtuais_perOp * i);
+                const simulatedCustoOperadorPorEventoFNW = simulatedEventosFNWOperadorMensal_perOp > 0 ? (custoMensalOperador / simulatedEventosFNWOperadorMensal_perOp) : 0;
+                
+                // Calculate adjusted custoPorEventoRecepcionista based on 'i'
+                let adjustedCustoPorEventoRecepcionista = custoPorEventoRecepcionista;
+                const efficiencyThreshold = 10; // Events simultaneous after which efficiency gains level off
+                const maxEfficiencyReduction = 0.10; // Max 10% reduction
+                
+                if (i <= efficiencyThreshold) {
+                    // Reduce cost per receptionist per event up to the threshold
+                    adjustedCustoPorEventoRecepcionista = custoPorEventoRecepcionista * (1 - (i - 1) * (maxEfficiencyReduction / (efficiencyThreshold - 1)));
+                } else {
+                    // After threshold, cost per receptionist per event remains at max efficiency level
+                    adjustedCustoPorEventoRecepcionista = custoPorEventoRecepcionista * (1 - maxEfficiencyReduction);
+                }
+                adjustedCustoPorEventoRecepcionista = Math.max(0, adjustedCustoPorEventoRecepcionista); // Ensure it doesn't go negative
+
+                // Modify the original declarations to use adjustedCustoPorEventoRecepcionista
+                const simulatedCustoPessoalTotalPorEventoFNW = simulatedCustoOperadorPorEventoFNW + (numeroRecepcionistas * adjustedCustoPorEventoRecepcionista);
+                const simulatedComissaoVendasValorFNW = ticketMedio * comissaoVendasPercent;
+                const simulatedCustoTotalPorEventoFNW = simulatedCustoPessoalTotalPorEventoFNW + simulatedComissaoVendasValorFNW;
+                
+                const simulatedLucroLiquidoPorEventoFNW = ticketMedio - simulatedCustoTotalPorEventoFNW;
+                const simulatedLucroMensalTotalFNW_todosOperadores = simulatedLucroLiquidoPorEventoFNW * simulatedEventosFNWOperadorMensal_perOp * numeroTotalOperadores;
+                
+                // Calculate total monthly cost for the simulated scenario
+                const simulatedTotalMonthlyCost = (custoMensalOperador * numeroTotalOperadores) + 
+                                                  (simulatedEventosFNWOperadorMensal_perOp * numeroTotalOperadores * 
+                                                  ((numeroRecepcionistas * adjustedCustoPorEventoRecepcionista) + (ticketMedio * comissaoVendasPercent)));
+
+                // Calculate margin percentage for the simulated scenario
+                const simulatedMargemLiquidaFNW_percentual = ticketMedio > 0 ? (simulatedLucroLiquidoPorEventoFNW / ticketMedio) * 100 : 0;
+
+                xValues.push(i);
+                yValues.push(simulatedLucroMensalTotalFNW_todosOperadores);
+                marginPercentageValues.push(simulatedMargemLiquidaFNW_percentual);
+                totalCostValues.push(simulatedTotalMonthlyCost); // Add total cost to the array
+            }
+
+            // Add current scenario points for both profit and margin after loop
+            currentScenarioTrace.x.push(1);
+            currentScenarioTrace.y.push(lucroMensalTotalAtual_todosOperadores);
+            
+            currentMarginTrace.x.push(1);
+            currentMarginTrace.y.push(margemLiquidaAtual_percentual.toFixed(1) + '%'); // Push formatted string to y array
+
+            // Add FNW scenario points for both profit and margin after loop
+            fnwScenarioTrace.x.push(fatorSimultaneidadeFNW);
+            fnwScenarioTrace.y.push(lucroMensalTotalFNW_todosOperadores);
+
+            fnwMarginTrace.x.push(fatorSimultaneidadeFNW);
+            fnwMarginTrace.y.push(novaMargemLiquidaFNW_percentual.toFixed(1) + '%'); // Push formatted string to y array
+
+            const data = [
+                { x: xValues, y: yValues, mode: 'lines+markers', name: 'Lucro Mensal Total (FNW)', line: { shape: 'spline' }, yaxis: 'y1', hovertemplate: 'Eventos: %{x}<br>Lucro: R$ %{y:,.2f}<extra>Lucro Mensal Total (FNW)</extra>', hoverinfo: 'text' },
+                { x: xValues, y: marginPercentageValues, mode: 'lines+markers', name: 'Margem Líquida por Evento (FNW)', line: { shape: 'spline' }, yaxis: 'y2', hovertemplate: 'Eventos: %{x}<br>Margem: %{y:.1f}%%<extra>Margem Líquida por Evento (FNW)</extra>', hoverinfo: 'text' },
+                currentScenarioTrace,
+                currentMarginTrace,
+                fnwScenarioTrace,
+                fnwMarginTrace,
+                { x: xValues, y: totalCostValues, mode: 'lines+markers', name: 'Custo Total Mensal', line: { shape: 'spline', dash: 'dash' }, yaxis: 'y1', hovertemplate: 'Eventos: %{x}<br>Custo: R$ %{y:,.2f}<extra>Custo Total Mensal</extra>', hoverinfo: 'text' } // New Cost Curve Trace
+            ];
+
+            const layout = {
+                title: 'Análise de Produtividade: Lucro Total, Margem e Custo Mensal (com Eficiência de Escala)',
+                xaxis: { title: 'Eventos Simultâneos por Operador', tickfont: { size: 15 } }, // Increased font size for x-axis ticks
+                yaxis: { 
+                    title: { text: 'Valor (R$)', font: { size: 12 } }, // Changed to generic "Valor (R$)" as it now includes cost
+                    side: 'left',
+                    tickvals: [0, 50000, 100000, 150000, 200000, 250000], // Ajuste esses valores conforme o range do seu gráfico
+                    ticktext: ['0', '50k', '100k', '150k', '200k', '250k'], // Rótulos customizados com 'k' - removed $
+                    tickfont: { size: 15 }, // Increased font size for yaxis ticks
+                    ticks: 'inside' // Move ticks inside the plot area
+                },
+                yaxis2: { 
+                    title: { text: 'Margem Líquida por Evento (%)', font: { size: 12 } }, // Restored readable font size for yaxis2 title
+                    overlaying: 'y',
+                    side: 'right',
+                    tickformat: '.1%', // Changed to display one decimal place
+                    tickfont: { size: 15 }, // Increased font size for yaxis2 ticks
+                    ticks: 'inside' // Move ticks inside the plot area
+                },
+                hovermode: 'closest',
+                margin: { t: 50, b: 50, l: 60, r: 100 }, // Increased right margin for yaxis2 and legend
+                responsive: true,
+                legend: { x: 1.05, xanchor: 'left', y: 1, font: { size: 10 } } // Adjust legend position and font size
+            };
+
+            Plotly.newPlot('produtividadeChart', data, layout);
+        }
+        
+        // Removida a função calcularRoiSimulado() antiga, pois foi substituída por calcularProdutividadeOperador()
+
+    </script>
 </body>
-</html>
+</html> 
